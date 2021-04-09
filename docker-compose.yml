@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  postgres:
+    build:
+      context: database/
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    restart: always
+
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    restart: always
+
+  frontend:
+    build:
+      context: frontend/jp
+    restart: always
+
+  proxy:
+    build:
+      context: proxy
+    ports:
+      - "8000:8000"
+    restart: always
+
+
+volumes:
+  postgres:

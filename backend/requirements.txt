@@ -1,0 +1,8 @@
+django
+psycopg2
+flask
+Unidecode
+dj_database_url
+Flask-CORS
+gunicorn
+waitress
